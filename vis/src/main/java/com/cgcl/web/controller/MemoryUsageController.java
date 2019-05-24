@@ -19,8 +19,8 @@ public class MemoryUsageController {
 //        return "memory-usage/memory-usage";
 //    }
 
-    @RequestMapping("/memory")
-    public String memoryUsageTable(){
+    @RequestMapping({"/", "/memory"})
+    public String memoryUsageTable() {
         return "memory-usage/memory-usage-table";
     }
 }

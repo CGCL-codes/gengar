@@ -38,7 +38,7 @@ json_object *dhmp_get_json_data()
 				*apps_arr;
 	
 	
-	for(i=0; i<DHMP_SERVER_NODE_NUM; i++)
+	for(i=0; i<watcher->config.nets_cnt; i++)
 	{
 		dram_total_size_arr[i]=json_object_new_int64(watcher->servers_info[i].dram_total_size);
 		nvm_total_size_arr[i]=json_object_new_int64(watcher->servers_info[i].nvm_total_size);
@@ -46,7 +46,7 @@ json_object *dhmp_get_json_data()
 
 	res=json_object_new_object();
 	
-	for(i=0;i <DHMP_SERVER_NODE_NUM; i++)
+	for(i=0;i <watcher->config.nets_cnt; i++)
 	{
 		snprintf(server_name, 24, "server%d",i+1);
 
@@ -116,8 +116,8 @@ int dhmp_build_tcp_connection()
 	
 	memset(&server_addr, 0, sizeof(server_addr));
 	server_addr.sin_family=AF_INET;
-	server_addr.sin_addr.s_addr=inet_addr("127.0.0.1");
-	server_addr.sin_port=htons(3333);
+	server_addr.sin_addr.s_addr=inet_addr(watcher->config.watcher_addr);
+	server_addr.sin_port=htons(watcher->config.watcher_port);
 
 	watcher->tcp_sockfd=socket(AF_INET, SOCK_STREAM, 0);
 	if(watcher->tcp_sockfd<0)

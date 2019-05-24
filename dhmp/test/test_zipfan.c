@@ -4,7 +4,7 @@
 
 #define R 30000
 #define NUM_SIZE 300000
-const double A = 1.3;  //定义参数A>1的浮点数, 后来测试小于1的,似乎也可以,倾斜指数）
+const double A = 1.6;  //定义参数A>1的浮点数, 后来测试小于1的,似乎也可以,倾斜指数）
 const double C = 1.0;  //这个C是不重要的,一般取1, 可以看到下面计算中分子分母可以约掉这个C
 
 double pf[R]; //值为0~1之间, 是单个f(r)的累加值
@@ -57,7 +57,6 @@ int main(int argc,char *argv[])
 	if(argc<4)
 	{
 		printf("input param error. input:<filname> <size> <readnum> <writenum>\n");
-		printf("note:<readnum>+<writenum><=NUM_SIZE(300000)\n");
 		return -1;
 	}
 	else

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dhmp_config>
 	<client>
-		<log_level>1</log_level>
+		<log_level>4</log_level>
 	</client>
+
+	<watcher>
+		<addr>127.0.0.1</addr>
+        <port>3333</port>
+	</watcher>
 
 	<server id="1">
         		<nic_name>ib0</nic_name>

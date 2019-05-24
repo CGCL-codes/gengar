@@ -25,6 +25,8 @@
 #define DHMP_WDELAY_STR "wdelay"
 #define DHMP_KNUM_STR "knum"
 
+#define DHMP_WATCHER_STR "watcher"
+
 static void dhmp_print_config ( struct dhmp_config* total_config_ptr )
 {
 	int i;
@@ -37,6 +39,35 @@ static void dhmp_print_config ( struct dhmp_config* total_config_ptr )
 		INFO_LOG ( "wdelay %d",total_config_ptr->simu_infos[i].wdelay );
 		INFO_LOG ( "knum %d",total_config_ptr->simu_infos[i].knum );
 	} 
+}
+
+static int dhmp_parse_watcher_node ( struct dhmp_config* config_ptr, int index, xmlDocPtr doc, xmlNodePtr curnode )
+{
+	xmlChar* val;
+	int log_level=0;
+	
+	curnode=curnode->xmlChildrenNode;
+	while(curnode!=NULL)
+	{
+		if(!xmlStrcmp(curnode->name, (const xmlChar*)DHMP_ADDR_STR))
+		{
+			val=xmlNodeListGetString ( doc, curnode->xmlChildrenNode, 1 );
+			memcpy ( config_ptr->watcher_addr,
+			    	( const void* ) val,strlen ( ( const char* ) val )+1 );
+			xmlFree ( val );
+		}
+
+		if ( !xmlStrcmp ( curnode->name, ( const xmlChar* ) DHMP_PORT_STR ) )
+		{
+			val=xmlNodeListGetString ( doc, curnode->xmlChildrenNode, 1 );
+			config_ptr->watcher_port=atoi ( ( const char* ) val );
+			xmlFree ( val );
+		}
+		
+		curnode=curnode->next;
+	}
+
+	return 0;
 }
 
 static int dhmp_parse_client_node ( struct dhmp_config* config_ptr, int index, xmlDocPtr doc, xmlNodePtr curnode )
@@ -211,6 +242,9 @@ int dhmp_config_init ( struct dhmp_config* config_ptr, bool is_client )
 	curnode=curnode->xmlChildrenNode;
 	while ( curnode )
 	{
+		if ( !xmlStrcmp ( curnode->name, ( const xmlChar* ) DHMP_WATCHER_STR ) )
+			dhmp_parse_watcher_node ( config_ptr, index, config_doc, curnode );
+		
 		if ( !xmlStrcmp ( curnode->name, ( const xmlChar* ) DHMP_CLIENT_STR ) )
 			dhmp_parse_client_node ( config_ptr, index, config_doc, curnode );
 		

@@ -18,12 +18,8 @@ var MemUsage = function () {
 
     var tableHeight = 430;
 
-    // dev
-    //var wsUrl = "localhost:8080";
-    //var gateOneUrl = "https://202.114.10.172:6037/";
-    // prod
-    var wsUrl = "202.114.10.172:6036";
-    var gateOneUrl = "https://localhost:6037/";
+    var host = window.location.host;
+    var gateOneUrl = "https://202.114.10.172:6037/";
 
     function initTable() {
         $table.bootstrapTable({
@@ -324,9 +320,9 @@ var MemUsage = function () {
     function initWebSocket() {
         var ws;
         if ('WebSocket' in window) {
-            ws = new WebSocket("ws://" + wsUrl + "/ws")
+            ws = new WebSocket("ws://" + host + "/ws")
         } else {
-            ws = new SockJS("http://" + wsUrl + "/sockjs/ws");
+            ws = new SockJS("http://" + host + "/sockjs/ws");
         }
 
         //连接打开事件

@@ -976,13 +976,11 @@ static void dhmp_wc_success_handler(struct ibv_wc* wc)
  */
 static void dhmp_wc_error_handler(struct ibv_wc* wc)
 {
-    /*
 	if(wc->status==IBV_WC_WR_FLUSH_ERR)
-		INFO_LOG("work request flush error");
+		INFO_LOG("work request flush");
 	else
-		ERROR_LOG("wc status [%s] is error",
+		ERROR_LOG("wc status is [%s]",
 		            ibv_wc_status_str(wc->status));
-    */
 }
 
 /**

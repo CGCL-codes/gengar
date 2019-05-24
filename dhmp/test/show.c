@@ -4,7 +4,7 @@
 
 #define R 30000
 #define NUM_SIZE 300000
-const double A = 1.3;  //定义参数A>1的浮点数, 后来测试小于1的,似乎也可以,倾斜指数）
+const double A = 1.1;  //定义参数A>1的浮点数, 后来测试小于1的,似乎也可以,倾斜指数）
 const double C = 1.0;  //这个C是不重要的,一般取1, 可以看到下面计算中分子分母可以约掉这个C
 
 double pf[R]; //值为0~1之间, 是单个f(r)的累加值
@@ -47,17 +47,15 @@ void pick()
 
 int main(int argc,char *argv[])
 {
-	void *addr[R];
-	int i,size=65536,rnum,readnum,writenum,mode;
+	void *addr;
+	int i,size=65536,readnum,writenum;
 	char *str;
 	struct timespec task_time_start, task_time_end;
 	unsigned long task_time_diff_ns;
-	bool show_flag=false;
 	
 	if(argc<4)
 	{
 		printf("input param error. input:<filname> <size> <readnum> <writenum>\n");
-		printf("note:<readnum>+<writenum><=NUM_SIZE(300000)\n");
 		return -1;
 	}
 	else
@@ -78,22 +76,20 @@ int main(int argc,char *argv[])
 	
 	dhmp_client_init();
 	
-	for(i=0;i<R;i++)
-		addr[i]=dhmp_malloc(size);
+	addr=dhmp_malloc(size);
 	
 	clock_gettime(CLOCK_MONOTONIC, &task_time_start);
 	
 	for(i=0;i<readnum;i++)
-		dhmp_read(addr[rand_num[i]], str, size);
+		dhmp_read(addr, str, size);
 	
 	for(i=0;i<writenum;i++)
-		dhmp_write(addr[rand_num[i+readnum]], str, size);
+		dhmp_write(addr, str, size);
 	
 	
 	clock_gettime(CLOCK_MONOTONIC, &task_time_end);
 
-	for(i=0;i<R;i++)
-		dhmp_free(addr[i]);
+	dhmp_free(addr);
 	
 	dhmp_client_destroy();
 	task_time_diff_ns = ((task_time_end.tv_sec * 1000000000) + task_time_end.tv_nsec) -
@@ -101,8 +97,8 @@ int main(int argc,char *argv[])
 
 	printf("size %d readnum %d writenum %d ",size,readnum,writenum);
 	printf("runtime %lf\n", (double)task_time_diff_ns/1000000);
-
 	return 0;
 }
+
 
 
