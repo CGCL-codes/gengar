@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!--<link th:href="@{/plugins/bootstrap-4.0.0-dist/css/bootstrap.min.css}" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Iconic -->
+    <link th:href="@{/plugins/open-iconic/font/css/open-iconic-bootstrap.css}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+          integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <!-- Bootstrap Table -->
+    <link th:href="@{/plugins/bootstrap-table/bootstrap-table.min.css}" rel="stylesheet">
+
+    <title>Memory Usage</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#NavbarToggler"
+            aria-controls="NavbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="NavbarToggler" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Memory Usage<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/terminal" target="_blank">Terminal </a>
+            </li>
+        </ul>
+        <span class="navbar-text">Memory monitoring</span>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="toolbar" class="toolbar">
+                <div class="form-inline" role="form">
+                    <!--<a href="https://202.114.10.172:6037/" class="btn btn-secondary" role="button"-->
+                       <!--aria-disabled="true">认证 Gateone</a>-->
+                    <div id="sysAlert" class="alert" role="alert">
+                    </div>
+                </div>
+            </div>
+            <table id="MemUsageTable">
+            </table>
+            <!--<div id="gateone_container" style="position: relative; width: 100%; height: 100%">-->
+                <!--<div id="gateone"></div>-->
+            <!--</div>-->
+        </div>
+        <div class="col-lg-4">
+            <div id="cardsContainer" data-spy="scroll" data-offset="0" style="position: relative; overflow: auto">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--<script th:src="@{/plugins/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js}"></script>-->
+
+<!-- Bootstrap Table JS -->
+<script th:src="@{/plugins/bootstrap-table/bootstrap-table.min.js}"></script>
+<script th:src="@{/plugins/bootstrap-table/extensions/export/bootstrap-table-export.min.js}"></script>
+
+<!-- ECharts -->
+<script th:src="@{/plugins/echarts/echarts-4.1.0-src.js}"></script>
+<script th:src="@{/plugins/echarts/theme/macarons.js}"></script>
+
+<!-- sockjs -->
+<script th:src="@{/plugins/sockjs.min.js}"></script>
+
+<!-- gateone.js -->
+<script th:src="@{/plugins/gateone.js}"></script>
+
+<!-- page level js -->
+<script th:src="@{/pages/memory-usage/memory-usage-table.js}"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.toast').toast('show');
+    });
+</script>
+</body>
+</html>
