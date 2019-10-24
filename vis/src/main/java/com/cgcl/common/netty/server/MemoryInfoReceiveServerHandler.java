@@ -66,7 +66,7 @@ public class MemoryInfoReceiveServerHandler extends SimpleChannelInboundHandler<
             memoryInfo.setDramUnused(memoryInfo.getDramTotal() - used.get("dramUsed"));
             memoryInfo.setNvmTotal(Long.parseLong(value.get("nvm total size").toString()));
             memoryInfo.setNvmUsed(used.get("nvmUsed"));
-            memoryInfo.setNvmUnused(memoryInfo.getDramTotal() - used.get("nvmUsed"));
+            memoryInfo.setNvmUnused(memoryInfo.getNvmTotal() - used.get("nvmUsed"));
             memoryInfos.add(memoryInfo);
         }
         return memoryInfos;
