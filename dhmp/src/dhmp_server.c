@@ -194,6 +194,7 @@ void dhmp_server_init()
 	dhmp_config_init(&server->config, false);
 	dhmp_context_init(&server->ctx);
 
+	server->watcher_trans=NULL；
 	/*init client transport list*/
 	server->cur_connections=0;
 	pthread_mutex_init(&server->mutex_client_list, NULL);
