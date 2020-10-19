@@ -220,5 +220,3 @@ Benchmark: We allocate 30,000 objects of size 512KB and perform 100,000 reads an
 [user @client Gengar]# cd dhmp/bin
 [user @client bin]# ./test.sh
 ```
-## Support or Contact
-If you have any questions, please contact ZhuoHui Duan(zhduan@hust.edu.cn), Haikun Liu (hkliu@hust.edu.cn), Xin Zhang (rex6817@gmail.com), Cong Liu (codinglzc@gmail.com) and Xiaofei Liao (xfliao@hust.edu.cn).
