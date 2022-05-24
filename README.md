@@ -12,9 +12,20 @@ Gengar has achieved following functions:
 
 ## Citing Gengar
 
-If you use Gengar, please cite our research paper published at ICDCS 2021.
+If you use Gengar, please cite our research paper published at ICDCS 2021. [(LINK)](https://ieeexplore.ieee.org/abstract/document/9546450/)
 
 **Zhuohui Duan, Haikun Liu, Haodi Lu, Xiaofei Liao, Hai Jin, Yu Zhang, Bingsheng He, Gengar: An RDMA-based Distributed Hybrid Memory Pool, in: Proceedings of the 41th IEEE International Conference on Distributed Computing Systems(ICDCS), 2021**
+
+```javascript
+@inproceedings{duan2021gengar,
+  title={Gengar: An RDMA-based Distributed Hybrid Memory Pool},
+  author={Duan, Zhuohui and Liu, Haikun and Lu, Haodi and Liao, Xiaofei and Jin, Hai and Zhang, Yu and He, Bingsheng},
+  booktitle={Proceedings of the 2021 IEEE 41st International Conference on Distributed Computing Systems (ICDCS)},
+  pages={92--103},
+  year={2021},
+  organization={IEEE}
+}
+```
 
 The Web Image of Gengar Servers Memory Usage 
 ------------
